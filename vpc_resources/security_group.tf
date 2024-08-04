@@ -1,6 +1,6 @@
 #Security Group for public subnet 
-resource "aws_security_group" "sg-public" {
-  vpc_id = aws_vpc.Demo-VPC.id
+resource "aws_security_group" "sg_public" {
+  vpc_id = aws_vpc.Demo_VPC.id
 
   description = "Allow SSH and HTTP access"
 
@@ -33,15 +33,15 @@ resource "aws_security_group" "sg-public" {
   }
 
   tags = {
-    Name = "sg-public" 
+    Name = "sg_public" 
   }
 }
 
 
 #Security Group for Private Subnet 
 
-resource "aws_security_group" "sg-private" {
-  vpc_id = aws_vpc.Demo-VPC.id 
+resource "aws_security_group" "sg_private" {
+  vpc_id = aws_vpc.Demo_VPC.id 
 
   description = "Allow SSH access only from the public subnet range"
 
@@ -49,7 +49,7 @@ resource "aws_security_group" "sg-private" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [aws_subnet.route_table_private.cidr_block]  # Allow SSH only from the public subnet
+    cidr_blocks = [aws_subnet.public_subnet.cidr_block]  # Allow SSH only from the public subnet
   }
 
   egress {
@@ -60,7 +60,7 @@ resource "aws_security_group" "sg-private" {
   }
 
   tags = {
-    Name = "sg-private"
+    Name = "sg_private"
   }
 }
 

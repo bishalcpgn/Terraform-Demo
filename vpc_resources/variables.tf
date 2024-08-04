@@ -1,3 +1,7 @@
+variable "vpc_cidr" {
+    description = "defines IP address range for VPC "
+}
+
 variable "availability_zone_private" {
     description = "defines availability zone for private subnet"
 }
@@ -13,3 +17,4 @@ variable "public_subnet_cidr" {
 variable "private_subnet_cidr" {
     description = "defines IP address range for private subnet"
 }
+
